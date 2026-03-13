@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Diário de Viagens</string>
+    <string name="title_login">Entrar no Diário</string>
+    <string name="hint_email">E-mail</string>
+    <string name="hint_password">Senha</string>
+    <string name="btn_login">Entrar</string>
+    <string name="msg_no_account">Não tem uma conta? Registre-se</string>
+    <string name="title_register">Nova Conta</string>
+    <string name="hint_name">Nome Completo</string>
+    <string name="btn_register">Criar Conta</string>
+    <string name="msg_have_account">Já tem uma conta? Faça Login</string>
+    <string name="title_home">Minhas Viagens</string>
+    <string name="btn_logout">Sair</string>
+    <string name="btn_add_trip">Nova Viagem</string>
+    <string name="title_add_trip">Registrar Viagem</string>
+    <string name="title_edit_trip">Editar Viagem</string>
+    <string name="hint_trip_location">Local / Cidade</string>
+    <string name="hint_trip_desc">Lembranças da viagem...</string>
+    <string name="btn_save">Salvar</string>
+</resources>

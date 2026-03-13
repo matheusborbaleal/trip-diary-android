@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "712793069196",
+    "project_id": "diario-de-viagens-91a48",
+    "storage_bucket": "diario-de-viagens-91a48.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712793069196:android:9ef6a58178d66258280da9",
+        "android_client_info": {
+          "package_name": "com.matheus.diariodeviagens"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5kePYhFl69Avi6duR97teLX5AIWlAqxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
