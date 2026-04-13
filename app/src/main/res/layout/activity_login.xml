@@ -9,51 +9,42 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title_login"
-        android:textSize="24sp"
+        android:text="Bem-vindo"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:layout_marginBottom="32dp"/>
 
-    <EditText
-        android:id="@+id/editEmailLogin"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/containerEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_email"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="16dp"/>
+        android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/editPasswordLogin"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/containerPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_password"
-        android:inputType="textPassword"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginTop="8dp" />
 
-    <Button
-        android:id="@+id/btnLogin"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/containerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_login"/>
+        android:layout_marginTop="24dp" />
 
     <TextView
         android:id="@+id/textForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/msg_forgot_password"
-        android:textColor="#6200EE"
-        android:layout_marginTop="12dp"
-        android:textStyle="bold"
-        android:padding="8dp"/>
+        android:text="Esqueci minha senha"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/primaryColor" />
 
     <TextView
         android:id="@+id/textGoToRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/msg_no_account"
-        android:textColor="#6200EE"
+        android:text="Não tem conta? Cadastre-se"
         android:layout_marginTop="16dp"
-        android:textStyle="bold"
-        android:padding="8dp"/>
+        android:textStyle="bold" />
 
 </LinearLayout>

@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
@@ -12,6 +15,12 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        MobileAds.initialize(this) {
+            val adView = findViewById<AdView>(R.id.adView)
+            val adRequest = AdRequest.Builder().build()
+            adView.loadAd(adRequest)
+        }
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         val fab = findViewById<View>(R.id.fabAddTrip)

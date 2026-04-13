@@ -2,8 +2,7 @@ package com.matheus.diariodeviagens
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
+import android.text.InputType
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,46 +16,38 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
+    private val emailFragment = GenericInputFragment()
+    private val passwordFragment = GenericInputFragment()
+    private val buttonFragment = GenericButtonFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance()
 
-        val editEmailLogin = findViewById<EditText>(R.id.editEmailLogin)
-        val editPasswordLogin = findViewById<EditText>(R.id.editPasswordLogin)
-        val btnLogin = findViewById<Button>(R.id.btnLogin)
-        val textForgotPassword = findViewById<TextView>(R.id.textForgotPassword)
-        val textGoToRegister = findViewById<TextView>(R.id.textGoToRegister)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.containerEmail, emailFragment)
+            .replace(R.id.containerPassword, passwordFragment)
+            .replace(R.id.containerButton, buttonFragment)
+            .commitNow()
 
-        btnLogin.setOnClickListener {
-            val email = editEmailLogin.text.toString()
-            val password = editPasswordLogin.text.toString()
+        emailFragment.setup(
+            label = "E-mail",
+            inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+        )
 
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                auth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            lifecycleScope.launch(Dispatchers.IO) {
-                                val dao = AppDatabase.getDatabase(this@LoginActivity).tripDao()
-                                dao.deleteAllTrips()
+        passwordFragment.setup(
+            label = "Senha",
+            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        )
 
-                                withContext(Dispatchers.Main) {
-                                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
-                                    finish()
-                                }
-                            }
-                        } else {
-                            Toast.makeText(this, "Erro: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-            } else {
-                Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_SHORT).show()
-            }
+        buttonFragment.setup(text = "Entrar") {
+            performLogin()
         }
 
-        textForgotPassword.setOnClickListener {
-            val email = editEmailLogin.text.toString()
+        findViewById<TextView>(R.id.textForgotPassword).setOnClickListener {
+            val email = emailFragment.getText()
             if (email.isNotEmpty()) {
                 auth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -64,13 +55,38 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             } else {
-                Toast.makeText(this, "Digite seu e-mail acima.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Digite seu e-mail no campo acima.", Toast.LENGTH_SHORT).show()
             }
         }
 
-        textGoToRegister.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+        findViewById<TextView>(R.id.textGoToRegister).setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+    }
+
+    private fun performLogin() {
+        val email = emailFragment.getText()
+        val password = passwordFragment.getText()
+
+        if (email.isNotEmpty() && password.isNotEmpty()) {
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            val dao = AppDatabase.getDatabase(this@LoginActivity).tripDao()
+                            dao.deleteAllTrips()
+
+                            withContext(Dispatchers.Main) {
+                                startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                                finish()
+                            }
+                        }
+                    } else {
+                        Toast.makeText(this, "Falha na autenticação: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+        } else {
+            Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show()
         }
     }
 }

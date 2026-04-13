@@ -16,6 +16,15 @@
         android:theme="@style/Theme.DiarioDeViagens"
         tools:targetApi="31">
 
+        <property
+            android:name="android.adservices.AD_SERVICES_CONFIG"
+            android:resource="@xml/gma_ad_services_config"
+            tools:replace="android:resource" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">
