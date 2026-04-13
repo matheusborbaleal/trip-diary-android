@@ -1,50 +1,51 @@
 # ✈️ Diário de Viagens - Android
 
-Um aplicativo completo para registro de memórias de viagens, desenvolvido como projeto acadêmico de alta performance. O app combina persistência local e na nuvem, integração com hardware e consumo de serviços externos.
+Aplicativo avançado para registro de experiências de viagem, desenvolvido com foco em arquitetura modular, persistência híbrida e integração com serviços cloud do Firebase.
 
-## 🚀 Funcionalidades Principal
-- **Autenticação:** Login, Cadastro e Recuperação de Senha via Firebase Auth.
-- **Diário de Fotos:** Captura de fotos da galeria com armazenamento no Firebase Storage.
-- **Geolocalização:** Registro automático de coordenadas (Latitude e Longitude) via GPS.
-- **Sincronização Híbrida:** Funcionamento Offline (Room Database) com sincronização automática para Nuvem (Firebase Realtime Database).
-- **Consulta de Endereços:** Integração com a API ViaCEP para preenchimento de endereço através do CEP.
-- **Internacionalização:** Suporte total aos idiomas Português (Brasil) e Inglês (USA).
-- **Notificações:** Avisos de confirmação ao salvar registros, compatível com Android 13+.
+## 📋 Demonstração de Rubricas (Checklist Acadêmico)
 
-## 🛠️ Tecnologias e Arquitetura
-O projeto segue as melhores práticas de desenvolvimento Android moderno:
+### 1. Interfaces Dinâmicas e Componentização
+- **Componentização de UI:** A tela de Login foi desenvolvida utilizando fragmentos reutilizáveis (`GenericInputFragment` e `GenericButtonFragment`), permitindo injeção dinâmica de campos de E-mail, Senha e botões de ação.
+- **Fragments de Navegação:** Uso de `TripListFragment` para listagem e `ProfileFragment` para gestão de perfil e consumo de API.
 
-- **Linguagem:** Kotlin
-- **Arquitetura:** Interface dinâmica baseada em **Fragments** com navegação por **BottomNavigationView**.
-- **Concorrência:** Kotlin Coroutines para operações assíncronas em banco de dados e rede.
-- **Banco de Dados Local:** Room Database com Migrations.
-- **Rede:** Retrofit + Gson para consumo de API Restful.
-- **Image Loading:** Glide para carregamento e cache de imagens.
-- **Firebase Suite:** - Authentication
-  - Realtime Database
-  - Cloud Storage
-  - Analytics (Monitoramento de eventos)
-  - Crashlytics (Relatórios de estabilidade)
+### 2. Persistência Remota e Consumo de Dados
+- **Firebase Realtime Database:** Utilizado para persistir as tarefas (viagens) do usuário e o link da foto de capa do perfil.
+- **Firebase Storage:** Armazenamento físico das fotos das viagens e da imagem de capa do usuário.
+- **API Restful:** Integração com a API **ViaCEP** via **Retrofit** para busca automática de endereços a partir do CEP.
+
+### 3. Notificações, Permissões e Background
+- **Permissions Runtime:** Implementação de solicitação de permissões em tempo de execução para GPS e Notificações (compatível com Android 13/API 33).
+- **Notificações:** Sistema de notificações locais (Background Notification) ao salvar registros.
+- **Firebase Cloud Messaging:** Configurado para suporte a Push Notifications.
+- **Analytics:** Monitoramento de eventos de interação e salvamento de dados.
+
+### 4. Localização, Anúncios e Estabilidade
+- **Internacionalização:** Suporte completo aos idiomas Português (Brasil) e Inglês (USA).
+- **AdMob:** Integração de anúncios em banner na HomeActivity.
+- **Crashlytics:** Implementado para monitoramento de estabilidade e relatórios de falhas em tempo real.
+- **App Distribution:** Configurado no console do Firebase para distribuição de versões de teste.
+
+## 🛠️ Stack Tecnológica
+- **Linguagem:** Kotlin + Coroutines (Tarefas em segundo plano)
+- **Banco Local:** Room Database (Offline First)
+- **Injeção de Interface:** FragmentManager & FragmentContainerView
+- **Rede:** Retrofit + Gson
+- **Imagens:** Glide (Cache e Rendering)
+
+## 🏗️ Arquitetura de Fragmentos Reutilizáveis
+O projeto utiliza um padrão de "Legos" na LoginActivity:
+1. `EmailInputFragment`: Gerencia a entrada de e-mail com validação.
+2. `PasswordInputFragment`: Gerencia a entrada de senha com `InputType` protegido.
+3. `ButtonFragment`: Encapsula a lógica de clique e callback para a Activity mãe.
 
 
 
-## 📋 Pré-requisitos de Entrega (Checklist)
-| Requisito | Status | Tecnologia |
-| :--- | :---: | :--- |
-| Interface com Fragments | ✅ | FragmentManager & Navigation |
-| Consumo de API Restful | ✅ | Retrofit (ViaCEP) |
-| Banco de Dados Local | ✅ | Room SQLite |
-| Integração Nuvem | ✅ | Firebase Database |
-| Hardware (GPS/Câmera) | ✅ | Location Services & Storage |
-| Internacionalização | ✅ | Strings.xml (pt/en) |
-| Notificações Push/Local | ✅ | NotificationManager (API 33+) |
-| Analytics & Crashlytics | ✅ | Firebase Analytics |
-
-## 🔧 Como Rodar o Projeto
+## 🚀 Como Executar
 1. Clone o repositório.
-2. Certifique-se de ter o arquivo `google-services.json` na pasta `/app`.
-3. Sincronize o Gradle.
-4. Rode em um emulador ou dispositivo físico com Android 8.0 ou superior.
+2. Certifique-se de que o arquivo `google-services.json` está presente na pasta `app/`.
+3. O SDK do AdMob utiliza IDs de teste padrão do Google para fins de avaliação acadêmica.
+4. Execute o projeto em um emulador ou dispositivo real (Recomendado API 33+).
 
 ---
-Desenvolvido por **Matheus** como parte do projeto de Desenvolvimento Mobile.
+**Desenvolvido por:** Matheus  
+**Disciplina:** Desenvolvimento Mobile
