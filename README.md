@@ -1,32 +1,50 @@
-# 🌍 Diário de Viagens (Trip Diary)
+# ✈️ Diário de Viagens - Android
 
-Aplicativo Android nativo desenvolvido em Kotlin para o gerenciamento de registros de viagens, com suporte a persistência local e sincronização em tempo real na nuvem.
+Um aplicativo completo para registro de memórias de viagens, desenvolvido como projeto acadêmico de alta performance. O app combina persistência local e na nuvem, integração com hardware e consumo de serviços externos.
 
-## 🚀 Funcionalidades
+## 🚀 Funcionalidades Principal
+- **Autenticação:** Login, Cadastro e Recuperação de Senha via Firebase Auth.
+- **Diário de Fotos:** Captura de fotos da galeria com armazenamento no Firebase Storage.
+- **Geolocalização:** Registro automático de coordenadas (Latitude e Longitude) via GPS.
+- **Sincronização Híbrida:** Funcionamento Offline (Room Database) com sincronização automática para Nuvem (Firebase Realtime Database).
+- **Consulta de Endereços:** Integração com a API ViaCEP para preenchimento de endereço através do CEP.
+- **Internacionalização:** Suporte total aos idiomas Português (Brasil) e Inglês (USA).
+- **Notificações:** Avisos de confirmação ao salvar registros, compatível com Android 13+.
 
-- **Autenticação Segura:** Sistema de login e cadastro integrado ao Firebase Authentication.
-- **Gerenciamento de Viagens (CRUD):** Criação, leitura, atualização e exclusão de registros de viagens.
-- **Persistência Local (Offline-First):** Uso da biblioteca **Room Database** para garantir que os dados estejam disponíveis mesmo sem internet.
-- **Sincronização em Nuvem:** Integração com **Firebase Realtime Database** para backup e sincronização de dados entre dispositivos.
-- **Segurança de Dados:** Regras de segurança no Firebase que garantem o isolamento dos dados por usuário (Multi-tenant).
-- **Interface Moderna (Material Design 3):** - Uso de `MaterialCardView` para listagem.
-    - `FloatingActionButton` para ações rápidas.
-    - Feedback visual com `ProgressBar` (Loading) e `Empty States`.
+## 🛠️ Tecnologias e Arquitetura
+O projeto segue as melhores práticas de desenvolvimento Android moderno:
 
-## 🛠️ Tecnologias Utilizadas
+- **Linguagem:** Kotlin
+- **Arquitetura:** Interface dinâmica baseada em **Fragments** com navegação por **BottomNavigationView**.
+- **Concorrência:** Kotlin Coroutines para operações assíncronas em banco de dados e rede.
+- **Banco de Dados Local:** Room Database com Migrations.
+- **Rede:** Retrofit + Gson para consumo de API Restful.
+- **Image Loading:** Glide para carregamento e cache de imagens.
+- **Firebase Suite:** - Authentication
+  - Realtime Database
+  - Cloud Storage
+  - Analytics (Monitoramento de eventos)
+  - Crashlytics (Relatórios de estabilidade)
 
-- **Linguagem:** [Kotlin](https://kotlinlang.org/)
-- **Banco de Dados Local:** [Room](https://developer.android.com/training/data-storage/room)
-- **Backend/Cloud:** [Firebase](https://firebase.google.com/) (Auth & Realtime Database)
-- **Interface:** Material Design 3, RecyclerView, ConstraintLayout.
-- **Gerenciamento de Dependências:** Versão moderna com `libs.versions.toml` (Version Catalog).
 
-## 🏗️ Arquitetura
 
-O projeto segue os princípios de separação de responsabilidades:
-- **Model:** Entidade `Trip` representando os dados.
-- **DAO:** Interface de acesso a dados para o Room.
-- **Sync:** Lógica de espelhamento entre a base local e o Firebase sob o nó seguro `users/{uid}/trips`.
+## 📋 Pré-requisitos de Entrega (Checklist)
+| Requisito | Status | Tecnologia |
+| :--- | :---: | :--- |
+| Interface com Fragments | ✅ | FragmentManager & Navigation |
+| Consumo de API Restful | ✅ | Retrofit (ViaCEP) |
+| Banco de Dados Local | ✅ | Room SQLite |
+| Integração Nuvem | ✅ | Firebase Database |
+| Hardware (GPS/Câmera) | ✅ | Location Services & Storage |
+| Internacionalização | ✅ | Strings.xml (pt/en) |
+| Notificações Push/Local | ✅ | NotificationManager (API 33+) |
+| Analytics & Crashlytics | ✅ | Firebase Analytics |
+
+## 🔧 Como Rodar o Projeto
+1. Clone o repositório.
+2. Certifique-se de ter o arquivo `google-services.json` na pasta `/app`.
+3. Sincronize o Gradle.
+4. Rode em um emulador ou dispositivo físico com Android 8.0 ou superior.
 
 ---
-Desenvolvido por **Matheus** como projeto final de Pós-Graduação.
+Desenvolvido por **Matheus** como parte do projeto de Desenvolvimento Mobile.
