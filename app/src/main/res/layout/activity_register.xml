@@ -45,11 +45,13 @@
         android:text="@string/btn_register"/>
 
     <TextView
-        android:id="@+id/textGoToLogin"
+        android:id="@+id/textBackToLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/msg_have_account"
-        android:textColor="@color/primaryColor"
+        android:textColor="#6200EE"
         android:layout_marginTop="16dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:padding="8dp"/>
+
 </LinearLayout>

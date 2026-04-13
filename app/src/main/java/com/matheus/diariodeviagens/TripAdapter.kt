@@ -3,8 +3,10 @@ package com.matheus.diariodeviagens
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class TripAdapter(
     private val trips: List<Trip>,
@@ -14,6 +16,8 @@ class TripAdapter(
     class TripViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvLocation: TextView = itemView.findViewById(R.id.tvTripLocation)
         val tvDescription: TextView = itemView.findViewById(R.id.tvTripDescription)
+        val ivPhoto: ImageView = itemView.findViewById(R.id.ivTripCardPhoto)
+        val tvCoords: TextView = itemView.findViewById(R.id.tvTripCardCoords)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TripViewHolder {
@@ -26,6 +30,22 @@ class TripAdapter(
         val trip = trips[position]
         holder.tvLocation.text = trip.location
         holder.tvDescription.text = trip.description
+
+        if (!trip.imageUrl.isNullOrEmpty()) {
+            holder.ivPhoto.visibility = View.VISIBLE
+            Glide.with(holder.itemView.context)
+                .load(trip.imageUrl)
+                .into(holder.ivPhoto)
+        } else {
+            holder.ivPhoto.visibility = View.GONE
+        }
+
+        if (trip.latitude != null && trip.longitude != null) {
+            holder.tvCoords.visibility = View.VISIBLE
+            holder.tvCoords.text = "📍 GPS: ${trip.latitude}, ${trip.longitude}"
+        } else {
+            holder.tvCoords.visibility = View.GONE
+        }
 
         holder.itemView.setOnClickListener {
             onItemClick(trip)

@@ -1,14 +1,13 @@
 package com.matheus.diariodeviagens
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface TripDao {
-    @Insert
+    @Query("SELECT * FROM trips")
+    fun getAllTrips(): List<Trip>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(trip: Trip)
 
     @Update
@@ -16,9 +15,6 @@ interface TripDao {
 
     @Delete
     fun delete(trip: Trip)
-
-    @Query("SELECT * FROM trips")
-    fun getAllTrips(): List<Trip>
 
     @Query("DELETE FROM trips")
     fun deleteAllTrips()

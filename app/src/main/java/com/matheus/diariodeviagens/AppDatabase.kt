@@ -5,9 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Trip::class], version = 1, exportSchema = false)
+@Database(entities = [Trip::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
-
     abstract fun tripDao(): TripDao
 
     companion object {
@@ -21,7 +20,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "trip_database"
                 )
-                    .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance

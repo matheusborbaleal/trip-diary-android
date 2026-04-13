@@ -19,38 +19,32 @@ class RegisterActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        val editName = findViewById<EditText>(R.id.editNameRegister)
         val editEmail = findViewById<EditText>(R.id.editEmailRegister)
         val editPassword = findViewById<EditText>(R.id.editPasswordRegister)
         val btnRegister = findViewById<Button>(R.id.btnRegister)
-        val textGoToLogin = findViewById<TextView>(R.id.textGoToLogin)
-
-        textGoToLogin.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+        val textBackToLogin = findViewById<TextView>(R.id.textBackToLogin)
 
         btnRegister.setOnClickListener {
-            val name = editName.text.toString()
             val email = editEmail.text.toString()
             val password = editPassword.text.toString()
 
-            if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
+            if (email.isNotEmpty() && password.isNotEmpty()) {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(this, "Conta criada com sucesso!", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this, LoginActivity::class.java)
-                            startActivity(intent)
+                            startActivity(Intent(this, HomeActivity::class.java))
                             finish()
                         } else {
-                            Toast.makeText(this, "Erro: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, "Erro: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                         }
                     }
             } else {
-                Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Preencha os campos", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        textBackToLogin.setOnClickListener {
+            finish()
         }
     }
 }

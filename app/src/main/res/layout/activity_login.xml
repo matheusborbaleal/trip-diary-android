@@ -37,11 +37,23 @@
         android:text="@string/btn_login"/>
 
     <TextView
+        android:id="@+id/textForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/msg_forgot_password"
+        android:textColor="#6200EE"
+        android:layout_marginTop="12dp"
+        android:textStyle="bold"
+        android:padding="8dp"/>
+
+    <TextView
         android:id="@+id/textGoToRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/msg_no_account"
-        android:textColor="@color/primaryColor"
+        android:textColor="#6200EE"
         android:layout_marginTop="16dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:padding="8dp"/>
+
 </LinearLayout>
